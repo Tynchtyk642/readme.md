@@ -7,7 +7,7 @@
     - _Application Subnetwork (private)_
     - _Database Subnetwork (private)_
 2. ### Route to IGW (egress to internet from resource tagged ***"public"***)
-3. ### 3 Firewall Rules:
+3. ### Three Firewall Rules:
     - Public Subnet open to all externall traffic (for ***"public"*** tagged resource)
     - Application Subnet receive traffic from private IPs originating from the Public Subnet (to resource tagged ***"application"***)
     - Database Subnet receive traffic from private IPs originating from the application subnet (to resource tagged ***"database"***)
