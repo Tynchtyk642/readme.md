@@ -14,6 +14,15 @@
     
 ## **Usage**
 ```terraform
+provider "google" {
+  project = var.project_id
+  region  = var.region
+  zone    = var.zone
+
+  credentials = file(var.credentials_file)
+}
+
+
 module "network" {
   source                          = "./network"
   delete_default_routes_on_create = true
@@ -98,6 +107,16 @@ Then perform the following commands on the root folder:
 - `terraform plan` to see the infrastructure plan
 - `therraform apply` to apply infastructure build
 - `terraform destroy` to destroy the build infastructure
+
+## **Inputs to variables.tf**
+| Name | Description |  Type  |
+| ---- | --------- | ------ | 
+|project_id | Write to "default" the project name where the resource will created | `string`|
+| credentials_file | Write to "default" the path to your credentials file | `string`|
+|region | Write to "default" the region where by default your resource will created | `string`|
+|zone | Write to "default" the zone where by default your resource will will created | `string`|
+
+
 
 ## **VPC Inputs**
 
