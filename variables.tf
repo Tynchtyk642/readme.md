@@ -1,21 +1,26 @@
+
+// Write to "default" the project name where the resource will created
 variable "project_id" {
   type    = string
-  default = "playground-s-11-c842b39b"
+  default = ""
 }
 
+// Write to "default" the path to your credentials file
+variable "credentials_file" {
+  type    = string
+  default = "credentials.json"
+}
+
+// Write to "default" the region where by default your resource will created
 variable "region" {
   type    = string
   default = "us-central1"
 }
 
+// Write to "default" the zone where by default your resource will will created
 variable "zone" {
   type    = string
   default = "us-central1-b"
-}
-
-variable "credentials_file" {
-  type    = string
-  default = "playground-s-11-c842b39b-59d45a84e379.json"
 }
 
 #====================================== VPC ============================================
