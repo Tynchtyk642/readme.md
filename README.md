@@ -10,7 +10,7 @@
 3. ### Three Firewall Rules:
     - Public Subnet open to all externall traffic (for ***"public"*** tagged resource)
     - Application Subnet receive traffic from private IPs originating from the Public Subnet (to resource tagged ***"application"***)
-    - Database Subnet receive traffic from private IPs originating from the application subnet (to resource tagged ***"database"***)
+    - Database Subnet receive traffic from private IPs originating from the Application Subnet (to resource tagged ***"database"***)
     
 ## **Usage**
 ```terraform
