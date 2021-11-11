@@ -1,6 +1,6 @@
 # Terraform GCP Network
 
-## **This codes will create:**
+## This codes create:
 
 1. ### VPC with 3 Subnetwork:
     - _Presentation Subnetwork (public)_
@@ -94,7 +94,7 @@ module "network" {
 ```
 
 Then perform the following commands on the root folder:
-- `terraform init`
+- `terraform init` terraofrm initialization
 - `terraform plan` to see the infrastructure plan
 - `therraform apply` to apply infastructure build
 - `terraform destroy` to destroy the build infastructure
@@ -102,7 +102,7 @@ Then perform the following commands on the root folder:
 ## **VPC Inputs**
 
 | Name | Description |  Type  |
-| ---- | :---------: | ------ | 
+| ---- | --------- | ------ | 
 | gcp_vpc_name | The name of created VPC | `string` |
 |auto_create_subnetworks| It will create a subnet for each region automatically accross the CIDR-block range, if it is "true" | `bool` |
 |routing_mode| The network routing mode | `string` |
@@ -110,7 +110,7 @@ Then perform the following commands on the root folder:
 
 ## **Subnet Inputs**
 | Name | Description |  Type  |
-| ---- | :---------: | ------ | 
+| ---- | --------- | ------ | 
 | subnet_name | The name of the subnet being created | `string` |
 | subnet_ip_range | The IP and CIDR range of the subnet being created | `string` |
 | subnet_region | The region where the subnet will be created | `string` |
@@ -118,4 +118,27 @@ Then perform the following commands on the root folder:
 
 ## **Routes Inputs**
 | Name | Description |  Type  |
-| ---- | :---------: | ------ | 
+| ---- | --------- | ------ | 
+| name | The name of the route being created | `string`|
+| tags | The network tags assigned to this route. This is a list in string format. Eg. "tag-01,tag-02" | `string` |
+| destination_range |The destination range of outgoing packets that this route applies to. Only IPv4 is supported | `string` |
+| next_hop_insternet | Whether the next hop to this route will the default internet gateway. Use "true" to enable this as next hop | `string` |
+| next_hop_ip | Network IP address of an instance that sould handle matching packets | `string` |
+| next_hop_instance | URL or name of an instance that should handle matching packets. If just name is specified "next_hop_instance_zone" is required | `string`|
+| next_hop_instance_zone | The zone of the instance specified in next_hop_instance. Only required if next_hop_instance is specified as a name | `string` |
+| next_hop_vpc_tunnel | URL to a VpnTunnel that should handle matching packets | `string` |
+|priority | The priority of this route. Priority is used to break ties in cases where there is more than one matching route of equal prefix length. In the case of two routes with equal prefix length, the one with the lowest-numbered priority value wins | `string` |
+
+
+## **Firewall Rules Inputs**
+| Name | Description |  Type  |
+| ---- | --------- | ------ | 
+| name | The name of the firewall rule being created | `string` |
+| direction | Direction of traffic to which this firewall applies; default is INGRESS. | `string` |
+| ranges | `source_ranges` if direction is `INGRESS` and `destination_ranges` if direction is `EGRESS` | `list(string)` |
+| source_tags | If source tags are specified, the firewall will apply only to traffic with source IP that belongs to a tag listed in source tags | `list(string)` |
+| target_tags |  A list of instance tags indicating sets of instances located in the network that may make network connections as specified in allowed | `list(string)`
+| allow | The list of ALLOW rules specified by this firewall. Each rule specifies a protocol and port-range tuple that describes a permitted connection | `list(object)` |
+| deny | The list of DENY rules specified by this firewall | `list(object)` |
+|protocol | The IP protocol to which this rule applies | `string` |
+|ports | An optional list of ports to which this rule applies | `list(string)`
