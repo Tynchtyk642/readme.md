@@ -51,7 +51,7 @@ module "network" {
   {
     name = "presentation-firewall-rule"
     direction = "INGRESS"
-    ranges = ["10.0.0.0/24"]
+    ranges = ["10.0.1.0/24"]
     target_tags = ["public"]
     source_tags = null
 
@@ -64,7 +64,7 @@ module "network" {
   {
     name = "application-firewall-rule"
     direction = "INGRESS"
-    ranges = ["10.0.1.0/24"]
+    ranges = ["10.0.2.0/24"]
     target_tags = ["application"]
     source_tags = null
 
@@ -78,7 +78,7 @@ module "network" {
   {
     name = "database-firewall-rule"
     direction = "INGRESS"
-    ranges = ["10.0.2.0/24"]
+    ranges = ["10.0.3.0/24"]
     source_tags = null
     target_tags = ["database"]
 
